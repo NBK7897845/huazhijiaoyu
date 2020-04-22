@@ -1,0 +1,30 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/index/list",
+    "pages/index/class",
+    "pages/index/select",
+    "pages/user/user",
+    "pages/user/setuser",
+    "pages/user/member",
+    "pages/user/myclass",
+    "pages/user/success",
+    "pages/user/aboutus",
+    "pages/user/feedback"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "才找到技能学习平台",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#efefef"
+  },
+  "nvueCompiler": "uni-app",
+  "renderer": "auto",
+  "splashscreen": {
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
+  },
+  "appname": "caizhaodao",
+  "compilerVersion": "2.4.6",
+  "usingComponents": {}
+}

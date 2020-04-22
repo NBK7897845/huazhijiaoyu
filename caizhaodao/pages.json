@@ -1,0 +1,66 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "才找到技能学习平台"
+			}
+		},{
+			"path": "pages/index/list",
+			"style": {
+				"navigationBarTitleText": "课程列表"
+			}
+		},{
+			"path": "pages/index/class",
+			"style": {
+				"navigationBarTitleText": "课程详情"
+			}
+		},{
+			"path": "pages/index/select",
+			"style": {
+				"navigationBarTitleText": "课程搜索"
+			}
+		},{
+			"path": "pages/user/user",
+			"style": {
+				"navigationBarTitleText": "个人主页"
+			}
+		},{
+			"path": "pages/user/setuser",
+			"style": {
+				"navigationBarTitleText": "个人信息"
+			}
+		},{
+			"path": "pages/user/member",
+			"style": {
+				"navigationBarTitleText": "会员信息"
+			}
+		},{
+			"path": "pages/user/myclass",
+			"style": {
+				"navigationBarTitleText": "课程记录"
+			}
+		},{
+			"path": "pages/user/success",
+			"style": {
+				"navigationBarTitleText": "我的成就"
+			}
+		},{
+			"path": "pages/user/aboutus",
+			"style": {
+				"navigationBarTitleText": "关于我们"
+			}
+		},{
+			"path": "pages/user/feedback",
+			"style": {
+				"navigationBarTitleText": "意见反馈"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "才找到技能学习平台",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#efefef"
+	}
+}

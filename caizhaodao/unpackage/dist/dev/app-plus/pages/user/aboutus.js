@@ -1,0 +1,2 @@
+setCssToHead(["@charset \x22UTF-8\x22;\n.",[1],"info { padding: ",[0,30],"; }\n.",[1],"info wx-text { margin-left: ",[0,30],"; font-size: ",[0,30],"; }\n.",[1],"info wx-image { width: 100%; }\n",],undefined,{path:"./pages/user/aboutus.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/user/aboutus.wxml') } }));

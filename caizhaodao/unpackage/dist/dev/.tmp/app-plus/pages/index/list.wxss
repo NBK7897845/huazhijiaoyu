@@ -1,0 +1,185 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.box {
+  overflow: hidden;
+}
+.header {
+  padding: 0 30rpx 10rpx 30rpx;
+  background: #fff;
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+}
+.select {
+  padding: 18rpx 0;
+  position: relative;
+}
+.select .h-img {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+.select .i-img {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  position: absolute;
+  top: 32rpx;
+  right: 400rpx;
+}
+.select input {
+  position: absolute;
+  right: 0;
+  top: 18rpx;
+  text-align: center;
+  height: 60rpx;
+  width: 87%;
+  font-size: 26rpx;
+  border-radius: 30rpx;
+  background: #EFEFEF;
+}
+.tab {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.t-selects {
+  float: left;
+  width: 24%;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 30rpx;
+  text-align: center;
+}
+.t-selects view {
+  position: relative;
+  top: -3px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  width: 80rpx;
+  height: 3px;
+  background: #106EFA;
+  border-radius: 1.5px;
+}
+.slide {
+  width: 80rpx;
+  height: 8rpx;
+  background: #106EFA;
+  border-radius: 4rpx;
+  margin-left: 22rpx;
+  margin-top: 10rpx;
+}
+.tab-click {
+  color: #121212;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.down {
+  display: none;
+}
+.footer {
+  position: fixed;
+  top: 260rpx;
+  height: calc(100vh - 260rpx);
+  width: 100%;
+}
+.info {
+  padding: 0 20rpx;
+}
+.subject {
+  padding-top: 56rpx;
+}
+.subject .s-image {
+  width: 100%;
+  border-radius: 20rpx;
+}
+.subject .title {
+  margin: 30rpx 0;
+  position: relative;
+}
+.title .t-name {
+  font-size: 35rpx;
+  font-weight: 400;
+  color: #1d1d1d;
+  line-height: 55rpx;
+  width: 80%;
+}
+.title .t-text {
+  width: 500rpx;
+  height: 80rpx;
+  font-size: 25rpx;
+  font-weight: 400;
+  color: #848484;
+  line-height: 40rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin: 22rpx 0;
+}
+.title .t-num {
+  position: absolute;
+  right: 10rpx;
+  top: 0;
+  font-size: 30rpx;
+  line-height: 34rpx;
+  color: #b3b3b3;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.title .t-num text {
+  font-size: 30rpx;
+  line-height: 34rpx;
+  color: #b3b3b3;
+}
+.t-num image {
+  width: 34rpx;
+  height: 34rpx;
+  margin-right: 10rpx;
+}
+.title .look {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 28rpx;
+  color: white;
+  line-height: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  background: #106efa;
+  border-radius: 33rpx;
+  width: 130rpx;
+}
+.subject + .subject {
+  border-top: 1rpx #CFCFCF solid;
+}
+

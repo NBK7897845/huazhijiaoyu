@@ -25,7 +25,7 @@
                   :value="item.value"
                 >{{item.label}}</option>
               </select>
-              <input type="text" class="index_B" placeholder="请输入关键词" v-model="keyword_account" />
+              <input type="text" class="index_B" placeholder="请输入编号或名称" v-model="keyword_account" />
               <select v-model="status_account" style="color:#777">
                 <option value>全部</option>
                 <option value="1">已上架</option>
@@ -64,12 +64,12 @@
               <el-table-column prop="category_name" label="专业" header-align="center" align="center"></el-table-column>
               <el-table-column label="评论列表" header-align="center" align="center">
                 <template slot-scope="scope">
-                  <el-button size="mini" @click="getDOM(),pop_pinglun(1,scope.$index)">查看</el-button>
+                  <el-button size="mini" @click="getDOM(scope),pop_pinglun(1,scope.$index)">查看</el-button>
                 </template>
               </el-table-column>
-              <el-table-column prop="watchnums" label="观看人数" header-align="center" align="center"></el-table-column>
-              <el-table-column prop="sharennms" label="分享次数" header-align="center" align="center"></el-table-column>
-              <el-table-column prop="create_time" label="创建时间" header-align="center" align="center"></el-table-column>
+              <el-table-column width="80px" prop="watchnums" label="观看人数" header-align="center" align="center"></el-table-column>
+              <el-table-column width="80px" prop="sharennms" label="分享次数" header-align="center" align="center"></el-table-column>
+              <el-table-column  prop="create_time" label="创建时间" header-align="center" align="center"></el-table-column>
               <el-table-column label="操作" header-align="center" align="center">
                 <template slot-scope="scope">
                   <el-button size="mini" @click="pop_addClass('修改',scope.$index)" type="primary">修改</el-button>
@@ -99,19 +99,19 @@
         <div class="none" @click="pop_pinglun"></div>
         <div v-if="ispinglun" class="p_forms">
           <div class="p-title">评论列表</div>
-          <div class="p-top">总共有{{this.pingLunLength}}条评论</div>
+          <!-- <div class="p-top">总共有{{this.pingLunLength}}条评论</div> -->
           <div>
             <div class="t_tab">
               <el-table
                 :header-cell-style="{'display': 'none'}"
-                :data="AllpinLun"
+                :data="this.AllpinLun"
                 style="width: 100%;max-height:100%"
                 :row-style="{'height':'0.3rem'}"
               >
                 <el-table-column prop="create_time" label="创建时间" header-align="center" align="center">
-                  <template slot-scope="scope">
+                  <!-- <template slot-scope="scope">
                     <span>{{scope.row.CreateTime|getDateT}}</span>
-                  </template>
+                  </template> -->
                 </el-table-column>
                 <el-table-column prop="nickname" label="姓名" header-align="center" align="center"></el-table-column>
                 <el-table-column prop="comment" label="评论内容" header-align="center" align="center"></el-table-column>
@@ -124,14 +124,15 @@
               :current-page="Page2"
               :page-size="PageSize2"
               layout="total, prev, pager, next, jumper"
-              :total="total"
+              :total="pingLunLength||0"
             ></el-pagination>
           </div>
         </div>
       </div>
       <div class="Popup" v-show="isaddClass">
-        <div class="none" @click="pop_addClass"></div>
+        <div class="none"></div>
         <div v-if="isaddClass" class="a_forms">
+          <div style="background:#F56C6C" v-if="changeType=='新增'" @click="pop_addClass" class="btn a-btn">取消</div>
           <div v-if="changeType=='新增'" @click="AddClass" class="a-btn btn">确认</div>
           <div
             v-if="changeType=='修改'"
@@ -354,8 +355,8 @@ export default {
       PageSize1: 10,
       Page2: 1,
       PageSize2: 10,
-      total: 0,
-      pinglunTotal: 0,
+      total: '',
+      pinglunTotal: '',
       imgType: "", //上传后方的位置说明
       Video: "", //上传的视频url
       videoFlag: false,
@@ -366,6 +367,7 @@ export default {
       AllitemOption:[],
       AllpinLun:[],
       pingLunLength:'',
+      class_name:'',
       categoryOption: [
         {
           value: "zhinan",
@@ -461,7 +463,7 @@ export default {
   created() {
     this.GetCategory();
     this.GetClass(1);
-    this.getDOM();
+
   },
  
   //深度监听 tableData变化
@@ -480,46 +482,43 @@ export default {
     app_top
   },
   methods: {
-      GetPingLun(class_name){
+      GetPingLun(cn){
       var that=this
-      
+      // if(PageSize2>10){
+        
+      // }
+      var pages=null
       that.$axios
         .post(
           "comment/index?admin_token=" + sessionStorage.getItem("admin_token"),
           that.$qs.stringify({
             
-            keyword:class_name,
-            page:that.Page2,
-            num:that.PageSize2
+            keyword:this.class_name,
           })
         )
         .then(res => {
           if (res.data.code == 10000) {
             that.AllpinLun=res.data.data.list
-         console.log('AllPINGLUN',that.AllpinLun)
             this.pingLunLength=that.AllpinLun.length
-            if(this.pingLunLength>10){
-              this.pinglunTotal=this.pingLunLength-10*this.pinglunTotal%10
-            }
+             this.AllpinLun=this.AllpinLun.slice(this.PageSize2*(this.Page2-1),this.PageSize2*(this.Page2))
+            // if(this.pingLunLength>10){
+            //   this.pinglunTotal=this.pingLunLength
+            // }
           } else if (res.data.code == 10002) {
             this.$message.error("登录信息失效，请重新登录!");
             this.$router.push("/Login");
           }
         })
     },
-    getDOM(){
-      var ckButton=document.getElementsByClassName('el-button el-button--default el-button--mini')
-      var ArrckButton=[].slice.call(ckButton);
-      ArrckButton.forEach((item,index)=>{
-        item.onclick=()=>{
-          var class_name=item.parentNode.parentNode.parentNode.firstChild.nextSibling.firstChild.innerText
-          this.GetPingLun(class_name) 
+    getDOM(scope){
+
+      if(scope!=undefined){
+        this.class_name=scope.row.class_name
+          console.log('scope.row',scope.row)    
+      }
+       this.GetPingLun(this.class_name)
           
-        }
-      })
-      
-      
-    }
+      }
     ,
     //开关弹窗
     Popups() {
@@ -630,20 +629,22 @@ export default {
     },
     CurrentChange1(val) {
       this.Page1 = val;
+
       this.GetClass();
     },
     handleSizeChange1(val) {
       this.PageSize1 = val;
       this.GetClass();
     },
-    CurrentChange2(val) {
-      this.Page2 = val;
-      this.getDOM();
+    CurrentChange2(num) {
+      this.Page2=num;
+      this.GetPingLun(this.class_name)
+      
     },
-    handleSizeChange2(val) {
-
-      this.PageSize2 = val;
-      this.getDOM();
+    handleSizeChange2(num) {
+      this.PageSize2 = num;
+      this.GetPingLun(this.class_name)
+      
     },
     GetClassQuest() {
       var that = this;
@@ -721,7 +722,10 @@ export default {
     },
   
     GetClass(ev,a) {
+      let role_name=sessionStorage.getItem("role_id");
+      console.log(role_name)
       var that = this;
+      console.log('that.keyword_account',that.keyword_account)
       if (a == 1) {
         that.Page1 = 1;
       }
@@ -752,7 +756,7 @@ export default {
         .then(res => {
           if (res.data.code == 10000) {
       that.tableData = res.data.data.list;
-         console.log('tableData',that.tableData)
+         console.log('查询结果',that.tableData)
             that.total = res.data.data.total_num;
           } else if (res.data.code == 10002) {
             this.$message.error("登录信息失效，请重新登录!");
@@ -1259,6 +1263,7 @@ export default {
 
             .index_B {
               left: 2rem;
+              width: 1.8rem !important;
             }
 
             .input {
@@ -1342,6 +1347,12 @@ export default {
     float: right;
     margin-right: 0.2rem;
     margin-top: 0.2rem;
+  > .c-btn{
+    float: right;
+    margin-right: 0.2rem;
+    margin-top: 0.2rem;
+    background: red !important;
+  }
   }
   > .p-title {
     font-size: 0.16rem;

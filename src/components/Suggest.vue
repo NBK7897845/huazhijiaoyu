@@ -17,7 +17,7 @@
 						</div>
 					</div>
 					<div class="t_main">
-						<el-table border :header-cell-style="{'background-color': '#28313F','color': '#fff','height':'0.5rem'}" :stripe="true" :data="tableData" style="width: 100%;max-height:100%" :row-style="{'height':'0.4rem'}">
+						<el-table border :header-cell-style="{'background-color': '#28313F','color': '#fff','height':'0.5rem'}" :stripe="true" :data="tableData" style="width: 100%;max-height:100%" :row-style="{'height':'0.6rem'}">
 							<el-table-column prop="nickname" label="用户昵称" sortable header-align='center' align='center'></el-table-column>
 							<el-table-column prop="mobile" label="手机号" header-align='center' align='center'></el-table-column>
 							<el-table-column prop="content" label="反馈内容" header-align='center' align='center'></el-table-column>

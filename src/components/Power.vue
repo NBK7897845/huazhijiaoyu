@@ -11,7 +11,7 @@
 						</div>
 					</div>
 					<div class="t_main">
-						<el-table border :header-cell-style="{'background-color': '#28313F','color': '#fff','height':'0.5rem'}" :stripe="true" :data="tableData" style="width: 100%;max-height:100%" :row-style="{'height':'0.4rem'}">
+						<el-table border :header-cell-style="{'background-color': '#28313F','color': '#fff','height':'0.5rem'}" :stripe="true" :data="tableData" style="width: 100%;max-height:100%" :row-style="{'height':'0.6rem'}">
 							<el-table-column prop="role_name" label="角色名字" sortable header-align='center' align='center'></el-table-column>
 							<el-table-column prop="role_des" label="角色描述" sortable header-align='center' align='center'></el-table-column>
 							<el-table-column prop="totalcredits" label="当前状态" header-align='center' align='center'>

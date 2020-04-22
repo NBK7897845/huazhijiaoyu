@@ -17,7 +17,7 @@
 						</div>
 					</div>
 					<div class="t_main">
-						<el-table border :header-cell-style="{'background-color': '#28313F','color': '#fff','height':'0.5rem'}" :stripe="true" :data="tableData" style="width: 100%;max-height:100%" :row-style="{'height':'0.4rem'}">
+						<el-table border :header-cell-style="{'background-color': '#28313F','color': '#fff','height':'0.5rem'}" :stripe="true" :data="tableData" style="width: 100%;max-height:100%" :row-style="{'height':'0.6rem'}">
 							<el-table-column prop="admin_name" label="账号名" sortable header-align='center' align='center'></el-table-column>
 							<el-table-column prop="username" label="名称" sortable header-align='center' align='center'></el-table-column>
 							<el-table-column prop="mobile" label="手机号" header-align='center' align='center'></el-table-column>
@@ -61,7 +61,7 @@
 						</el-form-item>
 						<el-form-item>
 							<el-button type="primary" @click="onSubmit">确认</el-button>
-							<el-button>取消</el-button>
+							<el-button @click="pop_member()">取消</el-button>
 						</el-form-item>
 					</el-form>
 				</div>

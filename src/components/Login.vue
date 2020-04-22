@@ -42,19 +42,19 @@
 			sessionStorage.removeItem("UserName")
 			sessionStorage.removeItem("PassWord")
 			sessionStorage.removeItem("admin_token")
+			sessionStorage.removeItem("role_id")
 			if (this.getCookie("UserName")) {
 				this.checked = true
 				this.username = this.getCookie("UserName")
 				console.log(this.getCookie("UserName"))
 				this.password = this.getCookie("PassWord")
+				this.role_id = this.getCookie("role_id")
 			}
 		},
 		methods: {
 			getCookie(name) {
 				var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
 				if (arr = document.cookie.match(reg)){
-
-					console.log(arr)
 					return (arr[2]);
 				}
 				else
@@ -83,17 +83,16 @@
 					}))
 					.then(res => {
 						if (res.data.code == 10000) {
-							console.log(res.data.code);
 							that.$message({
 										type: "success",
 										message: "登录成功",
 										showClose: true,
 									})
+							sessionStorage.setItem("role_id",res.data.data.role_id)
 							sessionStorage.setItem("UserName", that.username)
 							sessionStorage.setItem("admin_token", res.data.data.admin_token)
 							sessionStorage.setItem("PassWord", that.password)
 							sessionStorage.setItem("Pages",JSON.stringify(res.data.data.menu))
-							console.log(res.data.data.admin_token,JSON.stringify(res.data.data.menu))
 							if (that.checked) {
 								that.setCookie("UserName", that.username, 7)
 								that.setCookie("PassWord", that.password, 7)
